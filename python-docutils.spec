@@ -5,7 +5,7 @@
 
 Name:           %{?scl_prefix}python-%{srcname}
 Version:        0.11
-Release:        1.sc1%{?dist}
+Release:        2%{?dist}
 Summary:        System for processing plaintext documentation
 
 Group:          Development/Languages
@@ -46,7 +46,7 @@ Python inline documentation modules and packages.
 %setup -q -n %{srcname}-%{version}
 
 # Remove shebang from library files
-for file in docutils/utils/{code_analyzer.py,punctuation_chars.py,error_reporting.py} docutils/utils/math/{latex2mathml.py,math2html.py} docutils/writers/xetex/__init__.py; do
+for file in docutils/utils/{code_analyzer.py,punctuation_chars.py,error_reporting.py,smartquotes.py} docutils/utils/math/{latex2mathml.py,math2html.py} docutils/writers/xetex/__init__.py; do
 sed -i -e '/#! *\/usr\/bin\/.*/{1D}' $file
 done
 
@@ -93,6 +93,10 @@ rm -rf %{buildroot}
 %{python_sitelib}/*
 
 %changelog
+* Thu Apr 28 2016 Charalampos Stratakis <cstratak@redhat.com> - 0.11-2
+- Remove shebang from smartquotes.py library file
+Resolves: rhbz#1330041
+
 * Wed Nov 06 2013 Robert Kuska <rkuska@redhat.com> - 0.11-1
 - Update to 0.11
 
