@@ -1,0 +1,66 @@
+From 54f4b07302ce3ced064f7093d86b00c2fe1e81c0 Mon Sep 17 00:00:00 2001
+From: Charalampos Stratakis <cstratak@redhat.com>
+Date: Thu, 5 May 2016 17:48:26 +0200
+Subject: [PATCH] Fix failing tests
+
+---
+ test/test_parsers/test_rst/test_directives/test_code.py      | 6 +++---
+ test/test_parsers/test_rst/test_directives/test_code_long.py | 2 +-
+ test/test_parsers/test_rst/test_interpreted.py               | 2 +-
+ 3 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/test/test_parsers/test_rst/test_directives/test_code.py b/test/test_parsers/test_rst/test_directives/test_code.py
+index 219a975..8168357 100644
+--- a/test/test_parsers/test_rst/test_directives/test_code.py
++++ b/test/test_parsers/test_rst/test_directives/test_code.py
+@@ -107,10 +107,10 @@ totest['code-parsing'] = [
+         <inline classes="keyword">
+             print
+          \n\
+-        <inline classes="literal string">
++        <inline classes="literal string single">
+             'hello world'
+          \n\
+-        <inline classes="comment">
++        <inline classes="comment single">
+             # to stdout
+ """],
+ ["""\
+@@ -155,7 +155,7 @@ totest['code-parsing'] = [
+         <inline classes="ln">
+             11 \n\
+             \n\
+-        <inline classes="comment">
++        <inline classes="comment single">
+             # and now for something completely different
+         \n\
+         <inline classes="ln">
+diff --git a/test/test_parsers/test_rst/test_directives/test_code_long.py b/test/test_parsers/test_rst/test_directives/test_code_long.py
+index 6adf631..d2e5dbb 100644
+--- a/test/test_parsers/test_rst/test_directives/test_code_long.py
++++ b/test/test_parsers/test_rst/test_directives/test_code_long.py
+@@ -60,7 +60,7 @@ totest['code-parsing-long'] = [
+         <inline classes="ln">
+             11 \n\
+             \n\
+-        <inline classes="comment">
++        <inline classes="comment single">
+             # and now for something completely different
+         \n\
+         <inline classes="ln">
+diff --git a/test/test_parsers/test_rst/test_interpreted.py b/test/test_parsers/test_rst/test_interpreted.py
+index 7beab09..a9227e2 100755
+--- a/test/test_parsers/test_rst/test_interpreted.py
++++ b/test/test_parsers/test_rst/test_interpreted.py
+@@ -283,7 +283,7 @@ Python code :python:`print("The end")`.
+                 print
+             <inline classes="punctuation">
+                 (
+-            <inline classes="literal string">
++            <inline classes="literal string double">
+                 "The end"
+             <inline classes="punctuation">
+                 )
+-- 
+2.5.5
+

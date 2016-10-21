@@ -5,7 +5,7 @@
 
 Name:           %{?scl_prefix}python-%{srcname}
 Version:        0.12
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        System for processing plaintext documentation
 
 Group:          Development/Languages
@@ -19,6 +19,9 @@ Source0:        http://downloads.sourceforge.net/docutils/%{srcname}-%{version}.
 # python setup.py sdist
 # The tarball is in dist/docutils-VERSION.tar.gz
 #Source0:        %{srcname}-%{version}.tar.gz
+# Fix tests that fail with Pygments version >= 2.1
+# Fixed upstream: https://sourceforge.net/p/docutils/code/7936/
+Patch0: fix-failing-tests.patch
 
 
 BuildRoot:      %{_tmppath}/%{pkg_name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -43,6 +46,8 @@ Python inline documentation modules and packages.
 
 %prep
 %setup -q -n %{srcname}-%{version}
+
+%patch0 -p1
 
 # Remove shebang from library files
 for file in docutils/utils/{code_analyzer.py,punctuation_chars.py,error_reporting.py,smartquotes.py} docutils/utils/math/{latex2mathml.py,math2html.py} docutils/writers/xetex/__init__.py; do
@@ -96,6 +101,9 @@ rm -rf %{buildroot}
 %{python3_sitelib}/*
 
 %changelog
+* Mon Jul 18 2016 Charalampos Stratakis <cstratak@redhat.com> - 0.12-2
+- Fix failing tests when Pygments >= 2.1 is installed
+
 * Fri Dec 12 2014 Robert Kuska <rkuska@redhat.com> - 0.12-1
 - Update to 0.12
 
