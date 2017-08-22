@@ -4,7 +4,7 @@
 %global srcname docutils
 
 Name:           %{?scl_prefix}python-%{srcname}
-Version:        0.13.1
+Version:        0.14
 Release:        1%{?dist}
 Summary:        System for processing plaintext documentation
 
@@ -95,6 +95,10 @@ rm -rf %{buildroot}
 %{python3_sitelib}/*
 
 %changelog
+* Tue Aug 08 2017 Charalampos Stratakis <cstratak@redhat.com> - 0.14-1
+- Update to 0.14
+Resolves: rhbz#1479376
+
 * Thu Jun 15 2017 Charalampos Stratakis <cstratak@redhat.com> - 0.13.1-1
 - Update to 0.13.1 for rh-python36
 
